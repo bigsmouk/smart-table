@@ -13,7 +13,9 @@ export function initFiltering(elements) {
     const applyFiltering = (query, state, action) => {
         if (action && action.name === 'clear') {
             const fieldName = action.dataset.field;
-            const input = action.closest('.field')?.querySelector('input, select');
+            
+            // Ищем input по name напрямую
+            const input = document.querySelector(`[name="${fieldName}"]`);
             if (input) {
                 input.value = '';
                 if (state[fieldName] !== undefined) {
